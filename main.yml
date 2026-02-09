@@ -1,0 +1,5 @@
+- name: user management for linux VM
+  hosts: servers
+  become: true
+  roles:
+   - user-creation

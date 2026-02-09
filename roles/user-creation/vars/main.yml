@@ -1,0 +1,8 @@
+users:
+  - name: amine
+    password: "redhat123*"
+    groups: [wheel, developers, test]
+
+  - name: zakareya
+    password: "redhat123*"
+    groups: [developers]

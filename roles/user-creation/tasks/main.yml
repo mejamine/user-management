@@ -1,0 +1,8 @@
+- name: check if group exists
+  import_tasks: check_groups.yml
+
+- name: check if user exists
+  import_tasks: check_users.yml
+
+- name: create user
+  import_tasks: create_users.yml
