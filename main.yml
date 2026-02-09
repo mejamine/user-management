@@ -2,7 +2,7 @@
   hosts: servers
   become: true
   vars:
-    user_action: create   # (create, delete)
+    user_action: delete   # (create, delete)
 
   roles:
    - role: user-creation
