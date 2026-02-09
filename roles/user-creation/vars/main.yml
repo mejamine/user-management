@@ -1,5 +1,5 @@
 users:
-  - name: amine
+  - name: zakareya
     password: "redhat123*"
     groups: [wheel]
 
