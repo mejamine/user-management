@@ -1,0 +1,5 @@
+- name: Check users existence
+  import_tasks: check_users.yml
+
+- name: Delete users
+  import_tasks: delete_users.yml

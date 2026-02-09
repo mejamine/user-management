@@ -2,4 +2,8 @@
   hosts: servers
   become: true
   roles:
-   - user-creation
+   - role: user-creation
+     when: user_action == "create"
+     
+   - role: user-delete
+     when: user_action == "delete"
