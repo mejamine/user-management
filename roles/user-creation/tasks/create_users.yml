@@ -8,4 +8,4 @@
     create_home: true
     state: present
   loop: "{{ users }}"
-  when: item.name not in ansible_facts["existing_users"]
+  when: item.name not in existing_users

@@ -7,18 +7,17 @@
     database: group
 
 - name: Determine missing groups
-  ansible.builtin.set_fact:
-    ansible_facts:
-      missing_groups: "{{ required_groups | difference(getent_group.keys() | list) }}"
+  set_fact:
+    missing_groups: "{{ required_groups | difference(getent_group.keys() | list) }}"
 
 - name: Log missing groups
   ansible.builtin.debug:
     msg: "Missing groups: {{ missing_groups }}"
-  when: ansible_facts["missing_groups"] | length > 0
+  when: missing_groups | length > 0
 
 - name: Fail if required groups do not exist
   ansible.builtin.fail:
     msg: >
       User creation aborted.
       The following groups do not exist: {{ missing_groups | join(', ') }}
-  when: ansible_facts["missing_groups"] | length > 0
+  when: missing_groups | length > 0
