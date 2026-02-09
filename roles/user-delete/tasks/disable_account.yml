@@ -1,0 +1,6 @@
+- name: Disable user accounts temporarily
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: present
+    password_lock: yes
+  loop: "{{ users_to_delete }}"

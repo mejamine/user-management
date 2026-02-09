@@ -1,0 +1,4 @@
+- name: Backup home directories
+  ansible.builtin.command: >
+    rsync -a /home/{{ item }}/ {{ backup_dir }}/{{ item }}/
+  loop: "{{ users_to_delete }}"
