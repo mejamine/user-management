@@ -1,9 +1,11 @@
 - name: user management for linux VM
   hosts: servers
   become: true
+  vars:
+    user_action: delete   # (create, delete)
   roles:
    - role: user-creation
      when: user_action == "create"
-     
+
    - role: user-delete
      when: user_action == "delete"
