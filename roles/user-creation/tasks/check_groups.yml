@@ -7,9 +7,10 @@
     database: group
 
 - name: Determine missing groups
-  set_fact:
-    missing_groups: "{{ required_groups | difference(getent_group.keys() | list) }}"
-
+  ansible.builtin.set_fact:
+    ansible_facts:
+      missing_groups: "{{ required_groups | difference(getent_group.keys() | list) }}"
+      
 - name: Log missing groups
   ansible.builtin.debug:
     msg: "Missing groups: {{ missing_groups }}"
