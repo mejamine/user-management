@@ -2,4 +2,4 @@
   ansible.builtin.getent:
     database: passwd
     key: "{{username }}"
-  failed_when: true
+  failed_when: false
