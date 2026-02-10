@@ -10,8 +10,6 @@
 - name: Backup important files
   import_tasks: backup_files.yml
 
-- name: Disable user accounts temporarily
-  import_tasks: disable_account.yml
 
 - name: Delete users
   import_tasks: delete_users.yml
