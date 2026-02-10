@@ -2,4 +2,7 @@ users:
   - name: zakareya
     password: "redhat123*"
     groups: [wheel]
+  - name: amine
+    password: "redhat123*"
+    groups: [wheel]
 
