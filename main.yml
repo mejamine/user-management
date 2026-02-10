@@ -2,7 +2,7 @@
   hosts: servers
   become: true
   vars:
-    user_action: create   # (create, delete, change_username, change_password, lock, unlock)
+    user_action: change_password   # (create, delete, change_username, change_password, lock, unlock)
 
   roles:
    - role: user-creation
