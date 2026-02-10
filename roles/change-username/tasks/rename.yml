@@ -1,11 +1,7 @@
-- name: Set flags for existence
-  ansible.builtin.set_fact:
-    old_user_exists: "{{ old_user.getent is defined and old_user.getent != {} }}"
-    new_user_exists: "{{ new_user.getent is defined and new_user.getent != {} }}"
 
 - name: Rename user
   ansible.builtin.command: >
     usermod -l {{ new_username }} {{ old_username }}
   when:
-    - old_user_exists
-    - not new_user_exists
+    - new_username not in existing_users
+    - old_username in existing_users

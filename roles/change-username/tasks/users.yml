@@ -1,0 +1,7 @@
+- name: Get existing users
+  ansible.builtin.getent:
+    database: passwd
+
+- name: Set existing users list
+  set_fact:
+    existing_users: "{{ getent_passwd.keys() | list }}"
