@@ -1,0 +1,5 @@
+- name: check if user exists
+  import_tasks: check-user.yml
+
+- name: change password
+  import_tasks: change-password.yml

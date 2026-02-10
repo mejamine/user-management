@@ -1,0 +1,6 @@
+- name: Check if old username exists
+  ansible.builtin.getent:
+    database: passwd
+    key: "{{ old_username }}"
+  register: old_user
+  failed_when: false

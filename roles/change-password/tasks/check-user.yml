@@ -1,0 +1,5 @@
+- name: Check if username already exists
+  ansible.builtin.getent:
+    database: passwd
+    key: "{{username }}"
+  failed_when: true

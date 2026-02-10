@@ -1,0 +1,7 @@
+- name: Rename user only if needed
+  ansible.builtin.command: >
+    usermod -l new_username old_username
+  become: true
+  when:
+    - old_user.failed == false
+    - new_user.failed == true

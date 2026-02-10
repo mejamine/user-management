@@ -1,0 +1,7 @@
+- name: Move home directory (idempotent)
+  ansible.builtin.command: >
+    usermod -d /home/new_username -m new_username
+  become: true
+  when:
+    - old_user.failed == false
+    - new_user.failed == true

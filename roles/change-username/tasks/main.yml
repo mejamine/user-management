@@ -1,0 +1,11 @@
+- name: check old user
+  import_tasks: check-old.yml
+
+- name: check new user
+  import_tasks: check-new.yml
+
+- name: rename user
+  import_tasks: rename.yml
+
+- name: move home directory
+  import_tasks: home.yml

@@ -2,7 +2,7 @@
   hosts: servers
   become: true
   vars:
-    user_action: delete   # (create, delete)
+    user_action: create   # (create, delete, change_username, change_password, lock, unlock)
 
   roles:
    - role: user-creation
@@ -10,3 +10,15 @@
 
    - role: user-delete
      when: user_action == "delete"
+  
+   - role: change-username
+     when: user_action == "change_username"
+   
+   - role: change-password
+     when: user_action == "change_password"
+    
+   - role: user-lock
+     when: user_action == "lock"
+    
+   - role: user-unlock
+     when: user_action == "unlock"
