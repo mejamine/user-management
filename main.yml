@@ -1,8 +1,8 @@
 - name: user management for linux VM
-  hosts: servers
+  hosts: server1
   become: true
   vars:
-    user_action: unlock   # (create, delete, change_username, change_password, lock, unlock)
+    user_action: create   # (create, delete, change_username, change_password, lock, unlock)
 
   roles:
    - role: user-creation
