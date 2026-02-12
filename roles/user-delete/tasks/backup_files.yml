@@ -6,10 +6,7 @@
     group: root
     mode: '0755'
 
-- name: Backup home directories
-  ansible.posix.synchronize:
-    src: "/home/{{ item }}/"
-    dest: "{{ backup_dir }}/{{ item }}/"
-    archive: true
-    recursive: true
+- name: Backup home directories  
+  ansible.builtin.command: >
+   rsync -a /home/{{ item }}/ {{ backup_dir }}/{{ item }}/
   loop: "{{ users_to_delete }}"
