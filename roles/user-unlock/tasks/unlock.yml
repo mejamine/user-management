@@ -1,4 +1,4 @@
-- name: lock users
+- name: unlock users
   ansible.builtin.user: 
     name: "{{item}}"
     password_lock: false
