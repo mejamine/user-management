@@ -5,6 +5,6 @@
 
 - name: Warn if crontab exists
   ansible.builtin.fail:
-    msg: "User {{ item.item }} has crontab: {{ item.stdout_lines }}"
-  when: item.rc == 0
-  loop: "{{ user_crontab.results }}"
+    msg: "User {{ user_to_delete }} has crontab: {{ user_crontab.stdout_lines }}"
+  when: user_crontab.rc == 0
+
