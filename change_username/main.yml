@@ -1,0 +1,10 @@
+- name: user management for linux VM
+  hosts: server1
+  become: true
+  vars:
+    old_username: ""
+    new_username: ""
+  roles:
+   - role: change-username
+
+   

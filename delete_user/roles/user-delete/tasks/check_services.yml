@@ -1,0 +1,11 @@
+- name: Check for running processes for each user
+  ansible.builtin.shell: "pgrep -u {{ user_to_delete }}"
+  register: user_processes
+  ignore_errors: true
+
+
+- name: Fail if users have running processes
+  ansible.builtin.fail:
+    msg: "User {{ item.item }} has running processes: {{ item.stdout_lines }}"
+  when: item.rc == 0
+  loop: "{{ user_processes.results }}"

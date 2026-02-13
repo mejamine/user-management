@@ -1,0 +1,7 @@
+- name: user management for linux VM
+  hosts: server1
+  become: true
+  vars:
+    users: ""
+  roles:
+   - role: user-unlock

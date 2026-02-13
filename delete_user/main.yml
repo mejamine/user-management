@@ -1,0 +1,8 @@
+- name: user management for linux VM
+  hosts: server1
+  become: true
+  vars:
+    user_to_delete: ""
+    backup_dir: ""
+  roles:
+   - role: user-delete

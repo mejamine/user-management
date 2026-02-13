@@ -1,0 +1,21 @@
+- name: user management for linux VM
+  hosts: server1
+  become: true
+  vars:
+    username: ""
+    user_password: ""
+    user_group: ""
+  tasks:
+    - name: Create users
+      ansible.builtin.user:
+        name: "{{ username }}"
+        password: "{{ user_password | password_hash('sha512') }}"
+        groups: "{{ user_group  }}"
+        append: true
+        shell: /bin/bash
+        create_home: true
+        state: present
+
+
+
+   

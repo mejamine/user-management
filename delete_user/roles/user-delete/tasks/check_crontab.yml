@@ -1,0 +1,10 @@
+- name: Check crontab for each user
+  ansible.builtin.shell: "crontab -l -u {{ user_to_delete }}"
+  register: user_crontab
+  ignore_errors: true
+
+- name: Warn if crontab exists
+  ansible.builtin.fail:
+    msg: "User {{ item.item }} has crontab: {{ item.stdout_lines }}"
+  when: item.rc == 0
+  loop: "{{ user_crontab.results }}"

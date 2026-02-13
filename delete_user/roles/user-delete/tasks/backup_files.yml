@@ -1,0 +1,11 @@
+- name: Ensure backup directory exists
+  ansible.builtin.file:
+    path: "{{ backup_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Backup home directories  
+  ansible.builtin.command: >
+   rsync -a /home/{{ user_to_delete }}/ {{ backup_dir }}/{{ user_to_delete }}/

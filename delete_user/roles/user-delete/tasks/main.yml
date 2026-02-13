@@ -1,0 +1,13 @@
+
+- name: Check if users have running services
+  import_tasks: check_services.yml
+
+- name: Check crontab for users
+  import_tasks: check_crontab.yml
+
+- name: Backup important files
+  import_tasks: backup_files.yml
+
+
+- name: Delete users
+  import_tasks: delete_users.yml

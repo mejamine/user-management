@@ -1,9 +1,0 @@
-- name: get users
-  import_tasks: users.yml
-
-
-- name: rename user
-  import_tasks: rename.yml
-
-- name: move home directory
-  import_tasks: home.yml

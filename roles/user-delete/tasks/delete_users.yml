@@ -1,7 +1,0 @@
----
-- name: Delete users
-  ansible.builtin.user:
-    name: "{{ item }}"
-    state: absent
-    remove: true   # removes home directory
-  loop: "{{ users_to_delete }}"
