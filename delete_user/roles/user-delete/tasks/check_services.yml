@@ -7,4 +7,4 @@
 - name: Fail if users have running processes
   ansible.builtin.fail:
     msg: "User {{ user_to_delete}} has running processes: {{ user_processes.stdout_lines }}"
-  when: item.rc == 0
+  when: user_processes.rc == 0
