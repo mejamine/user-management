@@ -1,8 +1,42 @@
-- name: user management for linux VM
-  hosts: server1
+- name: Lock users
+  hosts: servers
   become: true
   vars:
     users: ""
 
-  roles: 
-   - role: user-lock
+  tasks: 
+    
+    - name: users list
+      ansible.builtin.set_fact:
+        user_list: "{{ users.split(',') }}"
+
+    - name: Check if each user exists
+      ansible.builtin.command: "getent passwd {{ item }}"
+      register: user_check
+      failed_when : false
+      loop: "{{ user_list }}"
+      loop_control:
+        label: "{{ item }}"
+
+    - name: Build list of existing users
+      ansible.builtin.set_fact:
+        existing_users: "{{ user_check.results | selectattr('rc','equalto',0) | map(attribute='item') | list }}"
+
+    - name: Build list of non-existing users
+      ansible.builtin.set_fact:
+        non_existing_users: "{{ user_check.results | rejectattr('rc','equalto',0) | map(attribute='item') | list }}"
+
+    - name: lock users
+      ansible.builtin.user: 
+        name: "{{item}}"
+        password_lock: true
+      loop: "{{ existing_users }}"
+
+    - name: Result
+      ansible.builtin.debug:
+        msg: "users {{existing_users}} locked"
+
+    - name: Non existing users
+      ansible.builtin.debug:
+        msg: "Non-existing users: {{ non_existing_users }}"
+      when: non_existing_users | length > 0

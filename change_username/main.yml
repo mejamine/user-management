@@ -1,10 +1,14 @@
-- name: user management for linux VM
-  hosts: server1
+- name: Change username
+  hosts: servers
   become: true
   vars:
     old_username: ""
     new_username: ""
-  roles:
-   - role: change-username
+  tasks: 
+    - name: Rename user
+      ansible.builtin.command: >
+        usermod -l {{ new_username }} {{ old_username }}
 
-   
+    - name: Move home directory 
+      ansible.builtin.command: >
+        usermod -d /home/{{ new_username }} -m {{ new_username }}

@@ -1,3 +1,0 @@
-- name: Rename user
-  ansible.builtin.command: >
-    usermod -l {{ new_username }} {{ old_username }}

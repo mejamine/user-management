@@ -1,8 +1,17 @@
-- name: user management for linux VM
-  hosts: server1
+- name: Change User Password
+  hosts: servers
   become: true
   vars:
     username: ""
     password: ""
-  roles:
-   - role: change-password
+  tasks: 
+    - name: Check if username already exists
+      ansible.builtin.getent:
+        database: passwd
+        key: "{{username }}"
+      failed_when: false
+
+    - name: Set user password
+      ansible.builtin.user:
+        name: "{{ username }}"
+        password: "{{ password | password_hash('sha512') }}"

@@ -1,5 +1,5 @@
-- name: user management for linux VM
-  hosts: server1
+- name: Creatre User
+  hosts: servers
   become: true
   vars:
     username: ""

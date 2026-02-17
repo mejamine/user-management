@@ -1,3 +1,0 @@
-- name: Move home directory 
-  ansible.builtin.command: >
-    usermod -d /home/{{ new_username }} -m {{ new_username }}
